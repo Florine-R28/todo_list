@@ -41,7 +41,7 @@ body {
     outline: none;
 }
 
-.add-task-bnt {
+.add-task-btn {
     background-color: #00c700;
 }
 
@@ -49,5 +49,34 @@ body {
     margin: 40px 0 0;
     padding: 0;
     width: 100%;
+}
+
+.task-element {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #fff;
+    list-style-type: none;
+}
+
+.task-label {
+    flex: 3;
+    padding: 10px;
+}
+
+.complete-task-btn {
+    background-color: #00c700;
+}
+
+.complete-task-btn>i {
+    pointer-events: none;
+}
+
+.remove-task-btn {
+    background-color: #f00000;
+}
+
+.remove-task-btn>i {
+    pointer-events: none;
 }
 
