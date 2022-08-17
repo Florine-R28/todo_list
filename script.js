@@ -1,3 +1,8 @@
+const removeTask = (event) => /*function removeTask*/ {
+    const taskListContainer = document.getElementById('taskListContainer');
+    taskListContainer.removeChild(event.target.parentNode);
+};
+
 const createTaskListElement = (value) => {
     const taskListElement = document.createElement('li');
     taskListElement.classList.add('task-element');
@@ -18,6 +23,7 @@ const createTaskListElement = (value) => {
     removeBtnElement.classList.add('btn', 'remove-task-btn');
     removeBtnElement.title = 'Supprimer la tâche';
     removeBtnElement.innerHTML = '<i class="fa-solid fa-trash-can"></i>'; 
+    removeBtnElement.addEventListener('click', removeTask);
     taskListElement.appendChild(removeBtnElement);
 
     return taskListElement;
