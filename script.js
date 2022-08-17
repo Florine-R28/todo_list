@@ -10,12 +10,25 @@ const addTaskLocalStorage = (taskValue) => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
-const removeTask = (event) => /*function removeTask*/ {
+const removeTaskInLocalstorage = (taskIndex /*sa position dans le tableau*/) => {
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+
+    if (tasks) {
+        tasks.splice(taskIndex, 1);
+    } else {
+        tasks = [];
+    }
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+const removeTask = (event, index) => /*function removeTask*/ {
+    removeTaskInLocalstorage(index);
     const taskListContainer = document.getElementById('taskListContainer');
     taskListContainer.removeChild(event.target.parentNode);
 };
 
-const createTaskListElement = (value) => {
+const createTaskListElement = (value, index) => {
     const taskListElement = document.createElement('li');
     taskListElement.classList.add('task-element');
 
@@ -35,7 +48,7 @@ const createTaskListElement = (value) => {
     removeBtnElement.classList.add('btn', 'remove-task-btn');
     removeBtnElement.title = 'Supprimer la tâche';
     removeBtnElement.innerHTML = '<i class="fa-solid fa-trash-can"></i>'; 
-    removeBtnElement.addEventListener('click', removeTask);
+    removeBtnElement.addEventListener('click', (event) => removeTask(event, index));
     taskListElement.appendChild(removeBtnElement);
 
     return taskListElement;
@@ -46,7 +59,7 @@ const addTask = () => {
 
     if (taskInput.value) {
         const taskListContainer = document.getElementById('taskListContainer');
-        const taskLIstElement = createTaskListElement(taskInput.value);
+        const taskLIstElement = createTaskListElement(taskInput.value, taskListContainer.children.length /*index 0*/);
         taskListContainer.appendChild(taskLIstElement);
         addTaskLocalStorage(taskInput.value);
         taskInput.value = '';
