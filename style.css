@@ -57,8 +57,16 @@ body {
     margin-bottom: 15px;
     background-color: #fff;
     list-style-type: none;
+    transition: .2;
 }
 
+.task-element.completed {
+    opacity: 0.5;
+}
+
+.task-element.task-element.completed>.task-label {
+    text-decoration: line-through;
+}
 .task-label {
     flex: 3;
     padding: 10px;
