@@ -29,10 +29,10 @@ const removeTask = (event, index) => /*function removeTask*/ {
 };
 
 const completeTask = (event) => {
-    if (event.target.parentNode.classList.contains(completed)) {
-        event.target.parentNode.classList.remove(completed);
+    if (event.target.parentNode.classList.contains('completed')) {
+        event.target.parentNode.classList.remove('completed');
     } else {
-        event.target.parentNode.classList.add(completed);
+        event.target.parentNode.classList.add('completed');
     }
 }
 
@@ -83,7 +83,7 @@ const init = () => {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
 
     if (tasks && tasks.length) {
-        const taskListContainer = document.getElementById('taskLIstContainer');
+        const taskListContainer = document.getElementById('taskListContainer');
 
         tasks.forEach((task, index) => {
             const taskListElement =  createTaskListElement(task,index);
