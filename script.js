@@ -32,7 +32,7 @@ const toggleCompletedTaskInLocalStorage = (taskIndex, isCompleted) /* on va lui 
     }
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
-}
+};
 
 const removeTask = (event, index) => /*function removeTask*/ {
     removeTaskInLocalstorage(index);
@@ -48,7 +48,7 @@ const completeTask = (event, index) => {
         event.target.parentNode.classList.add('completed');
         toggleCompletedTaskInLocalStorage(index, true);
     }
-}
+};
 
 const createTaskListElement = (value, index, isCompleted = false) => {
     const taskListElement = document.createElement('li');
@@ -92,9 +92,51 @@ const addTask = () => {
     }
 };
 
+const filterTasks= (event) => {
+    const tasks = document.getElementsByClassName('task-element');/*tableau*/
+
+    /* possible de faire un if/if else, plus obtenimisé de mettre un switch car ça s'arrete dès le break*/
+    switch(event.target.value) {
+        case 'all' /*event.target.value === 'all'*/ : {
+            Array.from(tasks).forEach(task => {
+                if (task.classList.contains('completed')) {
+                    task.style.display = 'flex';
+                }
+            })
+            break;
+        } 
+        case 'todo' : {
+            Array.from(tasks).forEach(task => {
+                if (task.classList.contains('completed')) {
+                    task.style.display = 'none'; /*n'affiche pas toutes les taches*/
+                } else {
+                    task.style.display = 'flex';
+                }
+            })
+            break;
+        }
+        case 'completed': {
+            Array.from(tasks).forEach(task => {
+                if (task.classList.contains('completed')) {
+                    task.style.display = 'flex'; 
+                } else {
+                    task.style.display = 'none';
+                }
+            })
+            break;
+        } 
+        default: /*else*/ {
+            break;
+        }
+    }
+};
+
 const init = () => {
     const addTaskBtn = document.getElementById('addTaskBtn');
     addTaskBtn.addEventListener('click', addTask);
+
+    const filterSelect= document.getElementById('filterSelect');
+    filterSelect.addEventListener('change', filterTasks);
     
     const tasks = JSON.parse(localStorage.getItem('tasks'));
 
@@ -106,7 +148,6 @@ const init = () => {
             taskListContainer.appendChild(taskListElement);
         })
     }
-    
     
 };
 

@@ -88,3 +88,12 @@ body {
     pointer-events: none;
 }
 
+.filter-select {
+    height: 43px;
+    margin-top: 40px;
+    padding: 10px;
+    font-size: 20px;
+    outline: none;
+    background-color: #fff;
+    border: none;
+  }
